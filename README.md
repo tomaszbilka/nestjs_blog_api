@@ -10,9 +10,10 @@ $ yarn install
 
 ## Running the app
 
-````bash
+```bash
 # development watch mode
 $ yarn start
+```
 
 ## Test
 
@@ -25,7 +26,8 @@ $ yarn run test:e2e
 
 # test coverage
 $ yarn run test:cov
-````
+```
+## Migrations
 
 ```bash
 # create migration
