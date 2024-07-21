@@ -7,12 +7,14 @@ import {
   Get,
   Param,
   Post,
+  Put,
   UseGuards,
 } from '@nestjs/common';
 import { CreateArticleDto } from '@app/article/dto/createArticle.dto';
 import { User } from '@app/user/decorators/user.decorator';
 import { UserEntity } from '@app/user/user.entity';
 import { ArticleResponseInterface } from '@app/user/types/articleResponse.interface';
+import { UpdateArticleDto } from '@app/article/dto/updateArticle.dto';
 
 @Controller('articles')
 export class ArticleController {
@@ -46,5 +48,20 @@ export class ArticleController {
     @Param('slug') slug: string,
   ) {
     return await this.articleService.deleteArticle(slug, currentUserId);
+  }
+
+  @Put('/:slug')
+  @UseGuards(AuthGuard)
+  async updateArcicle(
+    @User('id') currentUserId: number,
+    @Param('slug') slug: string,
+    @Body('article') updateArticleDto: UpdateArticleDto,
+  ): Promise<ArticleResponseInterface> {
+    const article = await this.articleService.updateArticle(
+      slug,
+      currentUserId,
+      updateArticleDto,
+    );
+    return this.articleService.buildArticleRespone(article);
   }
 }
