@@ -27,6 +27,7 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
+
 ## Migrations
 
 ```bash
@@ -38,4 +39,7 @@ yarn db:migrate
 
 # drop data base
 yarn db:drop
+
+# seed data base
+yarn db:seed
 ```
